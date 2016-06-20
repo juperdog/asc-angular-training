@@ -1,0 +1,28 @@
+<html>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      <title>Directive - Wraps Other Elements</title>
+   </head>
+   <body ng-app = "docsTransclusionDirective">
+      <div ng-controller="Controller">
+        <my-dialog>Check out the contents, {{name}}!</my-dialog>
+      </div>
+      <script>
+         angular.module('docsTransclusionDirective', [])
+          .controller('Controller', ['$scope', function($scope) {
+            $scope.name = 'Tobias';
+          }])
+          .directive('myDialog', function() {
+            return {
+              restrict: 'E',
+              transclude: true,
+              scope: {},
+              templateUrl: 'my-dialog.html'
+            };
+          });
+      </script>
+      <script type="text/ng-template" id="my-dialog.html">
+        <div class="alert" ng-transclude></div>
+      </script>
+   </body>
+</html>

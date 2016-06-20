@@ -1,0 +1,20 @@
+<html>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      <title>AngularJS First Application</title>
+   </head>
+   <body ng-app = "myapp">
+      <h1>Sample Application</h1>
+      <div ng-controller = "HelloController" >
+         <p>Enter your Name: <input type = "text" ng-model = "helloTo.name"></p>
+         <p>Hello {{helloTo.name}} !</p>
+      </div>
+      <script>
+         angular.module("myapp", [])
+         .controller("HelloController", function($scope) {
+            $scope.helloTo = {};
+            $scope.helloTo.name = "AngularJS";
+         });
+      </script>
+   </body>
+</html>

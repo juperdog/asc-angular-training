@@ -1,0 +1,21 @@
+<div class="container" ng-init="stu.initUpdate()">
+
+  <div>
+    Student List : <a ng-href="#/students">Back</a>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">Name :</div>
+    <div class="col-lg-9"><input type="text" ng-model="stu.student.name"/></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">Surname :</div>
+    <div class="col-lg-9"><input type="text" ng-model="stu.student.surname"/></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <button ng-click="stu.update()">Update</button>
+      <button>Reset</button>
+    </div>
+  </div>
+</div>

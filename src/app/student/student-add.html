@@ -3,16 +3,28 @@
   <div>
     Student List : <a ng-href="#/students">Back</a>
   </div>
+  <form name="myForm" novalidate>
+    <div class="row">
+      <div class="col-lg-3">Name :</div>
+      <div class="col-lg-9">
+        <input type="text" name="name" ng-model="stu.student.name" ng-required="true" />
+        <span ng-show="myForm.name.$touched && myForm.name.$invalid" style="color:red"> * Name is required</span>
+        valid : {{ myForm.name.$valid }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">Surname :</div>
+      <div class="col-lg-9"><input type="text" ng-model="stu.student.surname"/></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12"><button ng-click="stu.add()">Add</button></div>
+    </div>
 
-  <div class="row">
-    <div class="col-lg-3">Name :</div>
-    <div class="col-lg-9"><input type="text" ng-model="stu.student.name"/></div>
+    <div class="row">
+    <div class="col-lg-12">
+      <h1>Student Info directive : </h1><br>
+      <student-info odd-row="red" even="green" sort-field="id" sort-order="desc"></student-info>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-lg-3">Surname :</div>
-    <div class="col-lg-9"><input type="text" ng-model="stu.student.surname"/></div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12"><button ng-click="stu.add()">Add</button></div>
-  </div>
+  </form>
 </div>

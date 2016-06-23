@@ -12,3 +12,7 @@
 .thumbnail img.pull-right {
   width: 50px;
 }
+
+button[disabled], html input[disabled]{
+  color: #888;
+}

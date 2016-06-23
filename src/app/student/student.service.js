@@ -6,31 +6,9 @@
     .service('StudentService', StudentService);
 
   /** @ngInject */
-  function StudentService(){
+  function StudentService($http){
+    var host = 'http://172.23.249.139:8088';
 
-    var data = [
-      {
-        id : 1,
-        name : 'name',
-        surname : 'surname'
-      },
-      {
-        id : 2,
-        name : 'name1',
-        surname : 'surname1'
-      },
-      {
-        id : 3,
-        name : 'name2',
-        surname : 'surname2'
-      },
-      {
-        id : 4,
-        name : 'name3',
-        surname : 'surname3'
-      }
-    ];
-    var maxId = data.length + 1;
 
     this.list = list;
     this.add = add;
@@ -38,12 +16,12 @@
     this.get = get;
 
     function list() {
-      return data;
+     
+      return $http.get(host+'/students');
     }
 
     function add(student){
-      student.id = ++maxId;
-      data.push(student);
+      return $http.post(host+'/students',student);
     }
 
     function update(student){
@@ -53,13 +31,7 @@
     }
 
     function get(id){
-      var obj = null;
-      angular.forEach(data, function(val){
-        if(val.id == id){
-          obj = val;
-        }
-      });
-      return obj;
+      return $http.get(host+'/students/'+id);
     }
   }
 })();

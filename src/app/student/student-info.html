@@ -1,0 +1,12 @@
+<table border="1" style="width:50%">
+  <tr>
+    <th style="width:10%"> Id </th>
+    <th style="width:35%"> Name </th>
+    <th style="width:35%"> Surname </th>
+  </tr>
+  <tr ng-repeat="student in sts | orderBy: sort track by student.id" style="color:{{ $odd?oddRow:evenRow }}">
+    <td>{{student.id}}</td>
+    <td>{{student.name | firstLetter}}</td>
+    <td>{{student.surname | firstLetter}}</td>
+  </tr>
+</table>

@@ -6,9 +6,9 @@
     .controller('StudentController', StudentController);
 
   /** @ngInject */
-  function StudentController($routeParams, StudentService, $location) {
+  function StudentController($routeParams, StudentService, $location,$rootScope, $interval) {
     var vm = this;
-
+    
     //properties
     vm.students = [];
     vm.student = null;
@@ -22,7 +22,13 @@
 
 
     function initList(){
-      vm.students = StudentService.list();
+      $interval(function(){
+        StudentService.list().then(function(response){
+          //success
+          console.log('success',response);
+          vm.students = response.data;
+        });
+      }, 1000);
     }
 
     function initAdd(){
@@ -33,18 +39,24 @@
     }
 
     function add(){
-      StudentService.add(vm.student);
-      gotoList();
+      StudentService.add(vm.student)
+      .then(function(response){
+        //sucess added
+        gotoList();
+      });
+      
     }
 
     function initUpdate(){
       var id = $routeParams.id;
-      vm.student = StudentService.get(id);
+      StudentService.get(id).then(function(response){
+        vm.student = response.data;
+      });
     }
 
     function update(){
       StudentService.update(vm.student);
-      gotoList();
+     
     }
 
     function gotoList(){
